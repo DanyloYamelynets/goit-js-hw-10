@@ -13,12 +13,7 @@ errorText.hidden = true;
 
 fetchBreeds()
   .then(breeds => {
-    breeds.forEach(breed => {
-      const option = document.createElement('option');
-      option.value = breed.id;
-      option.textContent = breed.name;
-      breedSelect.appendChild(option);
-    });
+    breedSelect.insertAdjacentHTML('beforeend', createMarkupSelect(breeds));
   })
   .catch(error => {
     loaderText.hidden = true;
@@ -27,6 +22,12 @@ fetchBreeds()
       'Try reloading the page!'
     );
   });
+
+function createMarkupSelect(arr) {
+  return arr.map(breed => {
+    return `<option value="${breed.id}">${breed.name}</option>`;
+  });
+}
 
 breedSelect.addEventListener('change', onGetCat);
 
