@@ -24,9 +24,11 @@ fetchBreeds()
   });
 
 function createMarkupSelect(arr) {
-  return arr.map(breed => {
-    return `<option value="${breed.id}">${breed.name}</option>`;
-  });
+  return arr
+    .map(breed => {
+      return `<option value="${breed.id}">${breed.name}</option>`;
+    })
+    .join('');
 }
 
 breedSelect.addEventListener('change', onGetCat);
